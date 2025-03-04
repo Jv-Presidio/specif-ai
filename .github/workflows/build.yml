@@ -92,6 +92,13 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
           role-session-name: GitHubActions-${{ github.repository }}-${{ github.run_id }}
 
+      - name: Get AWS Account ID
+        id: aws-account-id
+        run: |
+          AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
+          echo "aws_account_id=${AWS_ACCOUNT_ID}" >> $GITHUB_OUTPUT
+          echo "AWS Account ID: ${AWS_ACCOUNT_ID}"
+
       - name: Set Image Name
         id: set-image-name
         run: |
