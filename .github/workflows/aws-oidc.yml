@@ -25,8 +25,8 @@ jobs:
     steps:
       - name: Debug Secrets
         run: |
-          echo "AWS_OIDC_ROLE_ARN: ${{ secrets.AWS_OIDC_ROLE_ARN }}"
-          echo "AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}"
+          echo "${{ secrets.AWS_OIDC_ROLE_ARN }}"
+          echo "${{ secrets.AWS_DEFAULT_REGION }}"
         shell: bash
 
       - name: Configure AWS credentials
