@@ -25,16 +25,16 @@ jobs:
     steps:
       - name: Debug Secrets
         run: |
-          echo "${{ secrets.AWS_OIDC_ROLE_ARN }}"
-          echo "${{ secrets.AWS_DEFAULT_REGION }}"
+          echo "${{ vars.AWS_OIDC_ROLE_ARN }}"
+          echo "${{ vars.AWS_DEFAULT_REGION }}"
         shell: bash
 
       - name: Configure AWS credentials
         id: aws-credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}
-          aws-region: ${{ secrets.AWS_DEFAULT_REGION  }}
+          role-to-assume: ${{ vars.AWS_OIDC_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_DEFAULT_REGION  }}
           role-session-name: GitHubActions-${{ github.repository }}-${{ github.run_id }}
 
       - name: Get AWS account ID
