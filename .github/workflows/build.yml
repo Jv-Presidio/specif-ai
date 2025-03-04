@@ -67,7 +67,6 @@ jobs:
       - name: Build Frontend
         working-directory: ui
         run: |
-          ls -la
           echo "Node version:"
           node -v
           npm run ${{ steps.set-build-env.outputs.BUILD_ENV }}
@@ -90,7 +89,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}
-          aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
+          aws-region: ${{ vars.AWS_REGION }}
           role-session-name: GitHubActions-${{ github.repository }}-${{ github.run_id }}
 
       - name: Set Image Name
